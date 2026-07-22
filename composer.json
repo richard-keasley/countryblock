@@ -1,0 +1,22 @@
+{
+  "name": "richard-keasley/countryblock",
+  "description": "Block access to website according to country using geo-blocking",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.4",
+    "maxmind/geoip2": "^2.14"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "CountryBlock\\": "src/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit tests/",
+    "download-geoip": "php scripts/download_geoip_db.php"
+  }
+}

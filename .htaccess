@@ -1,0 +1,28 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Prevent rewriting for actual files and directories
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Route all requests to index.php
+    RewriteRule ^(.*)$ index.php [L,QSA]
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Deny direct access to config and vendor directories
+<FilesMatch "^\.">  
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<DirectoryMatch "^.*(vendor|config)">
+    Order allow,deny
+    Deny from all
+</DirectoryMatch>
